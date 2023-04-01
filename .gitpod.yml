@@ -4,4 +4,4 @@ ports:
     onOpen: open-preview
 tasks:
   - name: Entrypoint
-    command: /usr/bin/tini -- /dockerstartup/startup.sh
+    command: sudo -E /usr/bin/tini -- /dockerstartup/startup.sh
