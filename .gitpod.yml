@@ -1,6 +1,5 @@
 image: accetto/debian-vnc-xfce-python-g3:vscode
 user: headless
-workdir: /home/headless
 ports:
   - port: 6901
     onOpen: open-preview
