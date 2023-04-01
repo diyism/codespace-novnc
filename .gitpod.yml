@@ -1,5 +1,33 @@
-image: accetto/debian-vnc-xfce-python-g3:vscode
-
-tasks:
-  - command: sudo docker-up && docker
-    name: Docker daemeon
+FROM accetto/debian-vnc-xfce-python-g3:vscode
+ENV PATH=/home/headless/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    FEATURES_BUILD_SLIM_XSERVER=1 \
+    NO_AT_BRIDGE=1 \
+    FEATURES_BUILD_SLIM_XFCE=1 \
+    FEATURES_BUILD_SLIM_TOOLS=1 \
+    FEATURES_SCREENSHOOTING= \
+    FEATURES_THUMBNAILING= \
+    DISPLAY=:1 \
+    FEATURES_VNC=1 \
+    VNC_COL_DEPTH=24 \
+    VNC_PORT=5901 \
+    VNC_PW=headless \
+    VNC_RESOLUTION=1360x768 \
+    VNC_VIEW_ONLY=false \
+    FEATURES_BUILD_SLIM_NOVNC=1 \
+    FEATURES_NOVNC=1 \
+    NOVNC_HOME=/usr/libexec/noVNCdim \
+    NOVNC_PORT=6901 \
+    HEADLESS_USER_ID=1000 \
+    HEADLESS_USER_NAME=headless \
+    HEADLESS_USER_GROUP_ID=1000 \
+    HEADLESS_USER_GROUP_NAME=headless \
+    HOME=/home/headless \
+    FEATURES_BUILD_SLIM_PYTHON=1 \
+    FEATURES_PYTHON=1 \
+    DONT_PROMPT_WSL_INSTALL=1 \
+    FEATURES_VSCODE=1 \
+    FEATURES_VERSION_STICKER=1 \
+    STARTUPDIR=/dockerstartup
+WORKDIR /home/headless
+ENTRYPOINT ["/usr/bin/tini", "--", "/dockerstartup/startup.sh"]
+EXPOSE 5901/tcp 6901/tcp
