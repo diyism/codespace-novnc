@@ -1,5 +1,5 @@
 version: '3'
 services:
   workspace:
-    user: "1000:1000"
+    user: "root:root"
     command: ["/usr/bin/tini", "--", "/dockerstartup/startup.sh", ">/dockerstartup/a.log"]
