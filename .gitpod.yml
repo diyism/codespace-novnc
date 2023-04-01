@@ -2,3 +2,6 @@ image: accetto/debian-vnc-xfce-python-g3:vscode
 ports:
   - port: 6901
     onOpen: open-preview
+tasks:
+  - name: Entrypoint
+    command: /usr/bin/tini -- /dockerstartup/startup.sh
