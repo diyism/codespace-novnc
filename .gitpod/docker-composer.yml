@@ -2,3 +2,4 @@ version: '3'
 services:
   workspace:
     user: "1000:1000"
+    entrypoint: ["/usr/bin/tini", "--", "/dockerstartup/startup.sh"]
