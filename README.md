@@ -1,4 +1,4 @@
-# huggingface-novnc
+# gitpod-novnc
 This is a repository for running "novnc" inside of gitpod, just use the prefix on this repository, or just click this link   
 # Creating Accounts  
 First, make sure you have a [github](https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home) account for syncing with gitpod.  
