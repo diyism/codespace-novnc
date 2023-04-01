@@ -1,0 +1,5 @@
+image: accetto/debian-vnc-xfce-python-g3:vscode
+
+tasks:
+  - command: sudo docker-up && docker
+    name: Docker daemeon
