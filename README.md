@@ -5,4 +5,4 @@ First, make sure you have a [github](https://github.com/join?ref_cta=Sign+up&ref
 Then, Create a [Gitpod.io](https://gitpod.io/login/) account to set up your workspace.  
 # Starting Your Workspace
 [https://gitpod.io/#https://github.com/diyism/gitpod-novnc/](https://gitpod.io/#https://github.com/diyism/gitpod-novnc/)  
-点击底下PORTS标签页6901那一行的第3按钮(Open Preview)就展示linux xfce桌面环境, 页面里点击"noVNC Full Client", 输入密码headless, 只是gitpod免费帐号每月只有50小时额度
+点击底下PORTS标签页6901那一行的第3按钮(Open Preview)就展示linux xfce桌面环境, 页面里点击"noVNC Full Client", 输入密码headless即可, 只是gitpod免费帐号每月只有50小时额度
