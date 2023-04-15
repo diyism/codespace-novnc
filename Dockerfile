@@ -1,2 +1,2 @@
-FROM accetto/debian-vnc-xfce-python-g3:vscod
+FROM accetto/debian-vnc-xfce-python-g3:vscode
 
