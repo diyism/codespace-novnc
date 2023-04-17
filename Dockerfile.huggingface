@@ -1,0 +1,36 @@
+FROM accetto/ubuntu-vnc-xfce-firefox-plus
+
+USER root
+RUN apt update -y ; apt install -y openssh-server netcat
+RUN chown headless:headless /home/headless
+RUN chmod 755 /home/headless
+
+USER headless:headless
+WORKDIR /home/headless/
+
+RUN mkdir /home/headless/.ssh
+RUN chown headless:headless /home/headless/.ssh
+RUN --mount=type=secret,id=authorized_keys,mode=0444,required=true cat /run/secrets/authorized_keys >/home/headless/.ssh/authorized_keys
+RUN chmod 600 /home/headless/.ssh/authorized_keys
+
+RUN wget https://pkgs.tailscale.com/stable/tailscale_1.38.4_amd64.tgz
+RUN tar xzvf tailscale_1.38.4_amd64.tgz
+WORKDIR /home/headless/tailscale_1.38.4_amd64
+RUN mkdir ${HOME}/custom_ssh
+RUN ssh-keygen -f ${HOME}/custom_ssh/ssh_host_rsa_key -N '' -t rsa
+RUN echo 'Port 2222' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'HostKey /home/headless/custom_ssh/ssh_host_rsa_key' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'AuthorizedKeysFile  /home/headless/.ssh/authorized_keys' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'ChallengeResponseAuthentication no' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'UsePAM no' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'Subsystem   sftp    /usr/lib/ssh/sftp-server' >> ${HOME}/custom_ssh/sshd_config
+RUN echo 'PidFile /home/headless/custom_ssh/sshd.pid' >> ${HOME}/custom_ssh/sshd_config
+RUN --mount=type=secret,id=tailscaled_state,mode=0444,required=true cat /run/secrets/tailscaled_state >/home/headless/tailscale_1.38.4_amd64/tailscaled.state
+
+RUN echo '#!/bin/bash' >> tsd.sh
+RUN echo '/usr/sbin/sshd -f /home/headless/custom_ssh/sshd_config &' >> tsd.sh
+RUN echo './tailscaled --tun=userspace-networking --state=./tailscaled.state --socket=./tailscaled.sock --port 41641 --socks5-server 0.0.0.0:8081 &' >> tsd.sh
+RUN echo './tailscale --socket=./tailscaled.sock up 2>&1' >> tsd.sh
+RUN chmod 744 tsd.sh
+#RUN /home/headless/tailscale_1.38.4_amd64/tsd.sh
+WORKDIR /dockerstartup
