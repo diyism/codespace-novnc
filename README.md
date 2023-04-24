@@ -12,4 +12,4 @@ Then, Create a [Gitpod.io](https://gitpod.io/login/) account to set up your work
 
 部署到huggingface需要复制Dockerfile.huggingface到huggingface的spaces files, 而huggingface环境 没root且没socket权限
 
-deepnote.com 有docker image部署(+init.ipynb) + jupyter notebook + terminal, 有root有socket权限, 功能非常全面, 但是有机器人严格监测vnc,porxy等进程而自动suspend user, 所以无法部署这个项目
+deepnote.com 有docker image部署(+init.ipynb) + jupyter notebook + terminal, 有root有socket权限没有cap-add MKNOD权限(/dev/net/tun), 功能非常全面, 但是有机器人严格监测vnc,porxy等进程而自动suspend user, 所以无法部署这个项目
