@@ -12,6 +12,6 @@ Then, Create a [Gitpod.io](https://gitpod.io/login/) account to set up your work
 
 部署到huggingface需要复制Dockerfile.huggingface到huggingface的spaces files, 而huggingface环境 没root且没socket权限
 
-deepnote.com 有docker image部署(+init.ipynb) + jupyter notebook + terminal, 有root有socket权限没有cap-add MKNOD权限(/dev/net/tun), 功能非常全面, 但是有机器人严格监测vnc,porxy等进程而自动suspend user, 所以无法部署这个项目
+deepnote.com 有docker image部署(+init.ipynb) + jupyter notebook + terminal, 有root有socket权限没有cap-add MKNOD权限(/dev/net/tun), 功能非常全面, 但是有机器人严格监测vnc,porxy等进程而自动suspend user, 所以无法部署这个项目, 磁盘5GB
 
 replit.com   禁止了udp数据包的出入(socat - UDP4-SENDTO:<source port detection server>:5353,sourceport=15443 无返回), tcp出去的数据包看到是从443出去, 但回去的数据包被处理 导致(): curl: (35) error:1408F10B:SSL routines:ssl3_get_record:wrong version number     执行  curl --resolve myproxy.com:443:127.0.0.1 https://myproxy.com  正常, 执行 curl --resolve myproxy.com:443:<外网ip> https://myproxy.com  就报 wrong version number, 而且磁盘只有1GB
