@@ -18,4 +18,4 @@ replit.com   不能部署docker image, 禁止了udp数据包的出入(socat - UD
 
 glitch.com   不能部署docker image, 可以udp监听8443, 持久磁盘0.2GB, 免费额度每月1000小时
 
-kaggle.com   直接下载和运行naive_caddy, 端口udp 443开放, 每次12小时
+kaggle.com   直接下载和运行naive_caddy, 要写成welcome_ip=... welcome_port=... ./caddy run才能保持一直运行(即使关闭kaggle页面), 不要写成caddy start, 端口udp 443开放, 每次12小时
