@@ -17,3 +17,5 @@ deepnote.com 有docker image部署(+init.ipynb) + jupyter notebook + terminal, �
 replit.com   不能部署docker image, 禁止了udp数据包的出入(socat - UDP4-SENDTO:<source port detection server>:5353,sourceport=15443 无返回), tcp出去的数据包看到是从443出去, 但回去的数据包被处理 导致(): curl: (35) error:1408F10B:SSL routines:ssl3_get_record:wrong version number     执行  curl --resolve myproxy.com:443:127.0.0.1 https://myproxy.com  正常, 执行 curl --resolve myproxy.com:443:<外网ip> https://myproxy.com  就报 wrong version number, 而且持久磁盘1GB
 
 glitch.com   不能部署docker image, 可以udp监听8443, 持久磁盘0.2GB, 免费额度每月1000小时
+
+kaggle.com   直接下载和运行naive_caddy, 端口udp 443开放, 每次12小时
