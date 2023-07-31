@@ -20,4 +20,4 @@ glitch.com   不能部署docker image, 可以udp监听8443, 持久磁盘0.2GB, �
 
 kaggle.com   直接下载和运行naive_caddy, 要写成welcome_ip=... welcome_port=... ./caddy run才能保持一直运行(即使关闭kaggle页面), 不要写成caddy start, 端口udp 443开放, 每次12小时
 
-render.com   即使listen在固定的443端口, 每个不同目标出去的端口都不同, 无法使用naive_caddy
+render.com,noteable.io   即使listen在固定的443端口, 每个不同目标出去的端口都不同, 无法使用naive_caddy
