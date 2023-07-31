@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ -n "$1" ]; then
+  time curl -s --socks5 "100.71.153.100:$1" "https://www.google.com/search?q=ip&gws_rd=cr" | grep -i "client ip" | tail -c 43
+else
+  time curl -s "https://www.google.com/search?q=ip&gws_rd=cr" | grep -i "client ip" | tail -c 43
+fi
